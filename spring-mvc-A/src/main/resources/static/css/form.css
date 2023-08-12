@@ -33,14 +33,13 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0; 
 }
 
-.c.cell_required{
+.cell_required{
     color: red;
     font-size: 12px;
     width: 10px;
     border-left: 0;
 }
 
-/*↓form.cssのみ追記しましょう！*/
 .error_text {
     color: red;
     margin: 10px;

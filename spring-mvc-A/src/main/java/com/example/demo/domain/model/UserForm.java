@@ -24,6 +24,9 @@ public class UserForm {
     @Min(value = 0, message = "年齢は0以上を入力してください。", groups = Group2.class)
     @Max(value = 100, message = "年齢は100以下を入力してください。", groups = Group2.class)
     private Integer age;
+    
+    @Size(min = 0, max = 20, message = "備考は20文字以内で入力してください。", groups = Group1.class)
+    private String note;
 
     public interface Group1 {}
     public interface Group2 {}
