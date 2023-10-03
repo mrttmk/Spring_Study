@@ -87,3 +87,11 @@
   font-size: 1.2rem;
   border-radius: 10px;
 }
+
+.history {
+	text-align: center;
+}
+
+.history_text {
+	font-size: 1.4rem;
+}

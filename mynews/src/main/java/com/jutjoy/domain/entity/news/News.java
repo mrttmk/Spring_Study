@@ -1,6 +1,7 @@
 package com.jutjoy.domain.entity.news;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +9,10 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,10 +20,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Data;
 
 @Entity
+@DynamicUpdate
 @Table(name = "news")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class News {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -42,5 +47,8 @@ public class News {
 	@LastModifiedDate
 	@Column(name = "updated_date")
 	private Timestamp updatedDate;
+	
+	@OneToMany(mappedBy = "news")
+	private List<NewsHistories> histories;
 
 }

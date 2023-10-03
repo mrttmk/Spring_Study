@@ -1,7 +1,6 @@
-package com.jutjoy.domain.entity.profile;
+package com.jutjoy.domain.entity.news;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +8,11 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -21,37 +20,25 @@ import lombok.Data;
 
 @Entity
 @DynamicUpdate
-@Table(name = "profiles")
+@Table(name = "news_histories")
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Profile {
+public class NewsHistories {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "hobby")
-	private String hobby;
-	
-	@Column(name = "gender")
-	private String gender;
-	
-	@Column(name = "introduction")
-	private String introduction;
-	
-	@CreatedDate
-	@Column(name = "registered_date")
-	private Timestamp registeredDate;
+	@Column(name = "news_id")
+	private Integer newsId;
 	
 	@LastModifiedDate
-	@Column(name = "updated_date")
-	private Timestamp updatedDate;
+	@Column(name = "edited_date")
+	private Timestamp editedDate;
 	
-	@OneToMany(mappedBy = "profile")
-	private List<ProfileHistories> histories;
+	@ManyToOne
+	@JoinColumn(insertable =  false, updatable = false)
+	private News news;
 
 }

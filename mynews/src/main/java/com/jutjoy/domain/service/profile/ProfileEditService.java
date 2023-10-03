@@ -1,13 +1,16 @@
 package com.jutjoy.domain.service.profile;
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jutjoy.domain.entity.profile.Profile;
+import com.jutjoy.domain.entity.profile.ProfileHistories;
 import com.jutjoy.domain.form.profile.ProfileEditForm;
 import com.jutjoy.domain.repository.ProfileRepository;
+import com.jutjoy.domain.repository.ProfilesHistoriesRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -23,29 +26,14 @@ public class ProfileEditService {
 		
 		Profile entity = profileRepository.findById(id).get();
 		Profile profile = editProfile(entity, form);
+		registerHistory(entity.getId());
 		
-		/*String dirPath = File.separator + profile.getId();
-		File uploadDir = new File(dirPath);
-		
-		if (!uploadDir.exists()) {
-			uploadDir.mkdirs();
-		}
-		
-		String fullPath = uploadDir.getPath() + File.separator;
-		File afterImageFullPath = new File(fullPath);*/
     }
 	
 	public Profile findProfile(int id) {
 		Profile profile = profileRepository.findById(id).get();
 		return profile;
 	}
-	
-	/*private void deleteFile(String imageName, File uploadDir) {
-		if (!Objects.isNull(imageName) && uploadDir.exists()) {
-			File imageFullPath = new File(uploadDir.getPath() + File.separator + imageName);
-			imageFullPath.delete();
-		}
-	}*/
 	
 	private Profile editProfile(Profile entity, ProfileEditForm form) {
 		entity.setName(form.getName());
@@ -54,6 +42,15 @@ public class ProfileEditService {
 		entity.setIntroduction(form.getIntroduction());
 
 		return profileRepository.save(entity);
+	}
+	
+	@Autowired
+	private ProfilesHistoriesRepository profilesHistoriesRepository;
+	
+	private void registerHistory(Integer id) {
+		ProfileHistories entity = new ProfileHistories();
+		entity.setProfilesId(id);
+		profilesHistoriesRepository.save(entity);
 	}
 }
 

@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jutjoy.domain.entity.news.News;
+import com.jutjoy.domain.entity.news.NewsHistories;
 import com.jutjoy.domain.form.news.NewsEditForm;
+import com.jutjoy.domain.repository.NewsHistoriesRepository;
 import com.jutjoy.domain.repository.NewsRepository;
 
 import lombok.AllArgsConstructor;
@@ -35,6 +37,8 @@ public class NewsEditService {
 		String beforeImageName = entity.getImageName();
 		
 		News news = editNews(entity, form);
+		
+		registerHistory(entity.getId());
 		
 		try {
 			String dirPath = FILE_PATH + File.separator + news.getId();
@@ -85,6 +89,15 @@ public class NewsEditService {
 			entity.setImageName(null);
 		}
 		return newsRepository.save(entity);
+	}
+	
+	@Autowired
+	private NewsHistoriesRepository newsHistoriesRepository;
+	
+	private void registerHistory(Integer id) {
+		NewsHistories entity = new NewsHistories();
+		entity.setNewsId(id);
+		newsHistoriesRepository.save(entity);
 	}
 
 }
