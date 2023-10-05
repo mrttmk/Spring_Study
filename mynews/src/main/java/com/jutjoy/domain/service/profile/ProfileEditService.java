@@ -22,6 +22,9 @@ public class ProfileEditService {
 	@Autowired
 	private ProfileRepository profileRepository;
 	
+	@Autowired
+	private ProfilesHistoriesRepository profilesHistoriesRepository;
+	
 	public void edit(int id, ProfileEditForm form) {
 		
 		Profile entity = profileRepository.findById(id).get();
@@ -44,12 +47,12 @@ public class ProfileEditService {
 		return profileRepository.save(entity);
 	}
 	
-	@Autowired
-	private ProfilesHistoriesRepository profilesHistoriesRepository;
+	/*@Autowired
+	private ProfilesHistoriesRepository profilesHistoriesRepository;*/
 	
 	private void registerHistory(Integer id) {
 		ProfileHistories entity = new ProfileHistories();
-		entity.setProfilesId(id);
+		entity.setProfileId(id);
 		profilesHistoriesRepository.save(entity);
 	}
 }

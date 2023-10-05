@@ -30,8 +30,8 @@ public class ProfileHistories {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "profiles_id")
-	private Integer profilesId;
+	@Column(name = "profile_id")
+	private Integer profileId;
 	
 	@LastModifiedDate
 	@Column(name = "edited_date")

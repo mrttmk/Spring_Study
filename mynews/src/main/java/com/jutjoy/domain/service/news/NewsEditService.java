@@ -28,6 +28,9 @@ public class NewsEditService {
 	@Autowired
 	private NewsRepository newsRepository;
 	
+	@Autowired
+	private NewsHistoriesRepository newsHistoriesRepository;
+	
 	private final String FILE_PATH = "/Users/moritatomoki/Documents/Spring_Study/news";
 	
 	public void edit (int id, NewsEditForm form) {
@@ -91,8 +94,8 @@ public class NewsEditService {
 		return newsRepository.save(entity);
 	}
 	
-	@Autowired
-	private NewsHistoriesRepository newsHistoriesRepository;
+	/*@Autowired
+	private NewsHistoriesRepository newsHistoriesRepository;*/
 	
 	private void registerHistory(Integer id) {
 		NewsHistories entity = new NewsHistories();

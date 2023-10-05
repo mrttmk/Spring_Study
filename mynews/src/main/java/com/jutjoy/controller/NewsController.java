@@ -25,13 +25,25 @@ import com.jutjoy.domain.service.news.NewsListService;
 @Controller
 public class NewsController {
 	
+	@Autowired
+	private NewsCreateService newsCreateService;
+	
+	@Autowired
+	private NewsListService newsListService;
+	
+	@Autowired
+	private NewsEditService newsEditService;
+	
+	@Autowired
+	private NewsDeleteService newsDeleteService;
+	
 	@GetMapping("/news/create")
     public String create(@ModelAttribute("form") NewsCreateForm newsCreateForm) {
         return "news/create";
     }
 	
-	@Autowired
-	private NewsCreateService newsCreateService;
+	/*@Autowired
+	private NewsCreateService newsCreateService;*/
 	
 	@PostMapping("/news/create")
 	public String create(@Validated @ModelAttribute("form") NewsCreateForm newsCreateForm,
@@ -51,8 +63,8 @@ public class NewsController {
 		return "news/complete";
 	}
 
-	@Autowired
-	private NewsListService newsListService;
+	/*@Autowired
+	private NewsListService newsListService;*/
 	
 	@GetMapping("/news/list")
 	public String list (@RequestParam(name = "title", required = false) String title, Model model) {
@@ -64,8 +76,8 @@ public class NewsController {
 		return "news/list";
 	}
 	
-	@Autowired
-	private NewsEditService newsEditService;
+	/*@Autowired
+	private NewsEditService newsEditService;*/
 	
 	@GetMapping("/news/edit/{id}")
 	public String edit (@ModelAttribute("form") NewsEditForm newsEditForm,
@@ -87,8 +99,8 @@ public class NewsController {
 		return "redirect:/news/edit/complete";
 	}
 	
-	@Autowired
-	private NewsDeleteService newsDeleteService;
+	/*@Autowired
+	private NewsDeleteService newsDeleteService;*/
 	
 	@PostMapping("/news/delete")
 	public String delete(@RequestParam(name = "id", required = true) int id, Model model) {

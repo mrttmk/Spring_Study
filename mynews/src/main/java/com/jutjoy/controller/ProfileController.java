@@ -25,13 +25,25 @@ import com.jutjoy.domain.service.profile.ProfileListService;
 @Controller
 public class ProfileController {
 	
+	@Autowired
+	private ProfileCreateService profileCreateService;
+	
+	@Autowired
+	private ProfileListService profileListService;
+	
+	@Autowired
+	private ProfileEditService profileEditService;
+	
+	@Autowired
+	private ProfileDeleteService profileDeleteService;
+	
 	@GetMapping("/profile/create")
 	public String create(@ModelAttribute("form") ProfileCreateForm profileCreateForm) {
 		return "profile/create";
 	}
 	
-	@Autowired
-	private ProfileCreateService profileCreateService;
+	/*@Autowired
+	private ProfileCreateService profileCreateService;*/
 	
 	@PostMapping("/profile/create")
 	public String create(@Validated @ModelAttribute("form") ProfileCreateForm profileCreateForm,
@@ -50,8 +62,8 @@ public class ProfileController {
 		return "profile/complete";
 	}
 	
-	@Autowired
-	private ProfileListService profileListService;
+	/*@Autowired
+	private ProfileListService profileListService;*/
 	
 	@GetMapping("/profile/list")
 	public String list(@RequestParam(name = "name", required = false) String name, Model model) {
@@ -63,8 +75,8 @@ public class ProfileController {
 		return "profile/list";
 	}
 	
-	@Autowired
-	private ProfileEditService profileEditService;
+	/*@Autowired
+	private ProfileEditService profileEditService;*/
 	
 	@GetMapping("/profile/edit/{id}")
 	public String edit(@ModelAttribute("form") ProfileEditForm profileEditForm,
@@ -86,8 +98,8 @@ public class ProfileController {
 		return "redirect:/profile/edit/complete";
 	}
 	
-	@Autowired
-	private ProfileDeleteService profileDeleteService;
+	/*@Autowired
+	private ProfileDeleteService profileDeleteService;*/
 	
 	@PostMapping("/profile/delete")
 	public String delete(@RequestParam(name = "id", required = true)int id, Model model) {

@@ -53,7 +53,7 @@
 .date {
 	width: 200px;
 	border: 1px solid;
-	margin: 0 auto;
+	margin-right:  auto;
 	padding: 5px 0;
 }
 
@@ -79,6 +79,7 @@
 .return_btn-area {
   text-align: center;
 }
+
 .return_btn {
   background-color: gray;
   width: 200px;
@@ -86,12 +87,17 @@
   line-height: 40px;
   font-size: 1.2rem;
   border-radius: 10px;
+  text-align: center;
 }
 
 .history {
 	text-align: center;
 }
 
+.history li {
+	border: none;
+}
+
 .history_text {
-	font-size: 1.4rem;
+	font-size: 1.0rem;
 }

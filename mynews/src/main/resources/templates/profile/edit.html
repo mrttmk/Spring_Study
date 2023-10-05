@@ -55,7 +55,7 @@
 			
 			<p class="history_text">編集履歴</p>
 			<ul class="history">
-				<li th:each="history : ${profile.histories}" class="date" th:text="${#dates.format(history.editedDate, 'yyyy-MM-dd hh:mm:ss')}"></li>
+				<li th:each="history : ${profile.histories}" class="date" th:text="${#dates.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')}"></li>
 			</ul>
 		</div>
 	</main>
